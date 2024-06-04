@@ -1,0 +1,52 @@
+name: Pull Request
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create summary
+        uses: .
+        with:
+          summary: | # markdown
+            # H1
+
+            paragraph
+
+            - item 1
+            - item 2
+            - item 3
+
+            | Heading 1 | Heading 2 |
+            | --- | --- |
+            | col1 | col2 |
+            | col1 | col2 |
+
+      - name: Expectation
+        shell: node {0}
+        run: | # javascript
+          const assert = require('node:assert/strict')
+          const fs = require('node:fs/promises')
+
+          assert.strictEqual(
+            fs.readFile(process.env.GITHUB_STEP_SUMMARY),
+            `# H1
+
+          paragraph
+
+          - item 1
+          - item 2
+          - item 3
+
+          | Heading 1 | Heading 2 |
+          | --- | --- |
+          | col1 | col2 |
+          | col1 | col2 |
+            `
+          )
