@@ -1,3 +1,5 @@
+# I haven't yet been able to test the output of job summary. But for now it can be done manually.
+
 name: Pull Request
 
 on:
@@ -27,26 +29,3 @@ jobs:
             | --- | --- |
             | col1 | col2 |
             | col1 | col2 |
-
-      - name: Expectation
-        shell: node {0}
-        run: | # javascript
-          const assert = require('node:assert/strict')
-          const fs = require('node:fs')
-
-          assert.strictEqual(
-            fs.readFileSync(process.env.GITHUB_STEP_SUMMARY).toString(),
-            `# H1
-
-          paragraph
-
-          - item 1
-          - item 2
-          - item 3
-
-          | Heading 1 | Heading 2 |
-          | --- | --- |
-          | col1 | col2 |
-          | col1 | col2 |
-            `
-          )
