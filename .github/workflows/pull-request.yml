@@ -35,7 +35,7 @@ jobs:
           const fs = require('node:fs/promises')
 
           assert.strictEqual(
-            fs.readFile(process.env.GITHUB_STEP_SUMMARY),
+            await fs.readFile(process.env.GITHUB_STEP_SUMMARY),
             `# H1
 
           paragraph
