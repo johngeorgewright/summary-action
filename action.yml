@@ -12,6 +12,6 @@ runs:
   steps:
     - shell: bash
       run: | # shell
-        echo << EOF >> $GITHUB_STEP_SUMMARY
+        cat << EOF >> $GITHUB_STEP_SUMMARY
         ${{ inputs.summary }}
         EOF
