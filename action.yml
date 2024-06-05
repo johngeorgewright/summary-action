@@ -2,6 +2,10 @@ name: Summary Action
 
 description: Write a step summary in markdown
 
+branding:
+  color: blue
+  icon: book-open
+
 inputs:
   summary:
     description: The summary in markdown format
