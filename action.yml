@@ -1,0 +1,17 @@
+name: Summary Action
+
+description: Write a step summary in markdown
+
+inputs:
+  summary:
+    description: The summary in markdown format
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: | # shell
+        cat << EOF >> $GITHUB_STEP_SUMMARY
+        ${{ inputs.summary }}
+        EOF
