@@ -32,10 +32,10 @@ jobs:
         shell: node {0}
         run: | # javascript
           const assert = require('node:assert/strict')
-          const fs = require('node:fs/promises')
+          const fs = require('node:fs')
 
           assert.strictEqual(
-            await fs.readFile(process.env.GITHUB_STEP_SUMMARY),
+            fs.readFileSync(process.env.GITHUB_STEP_SUMMARY).toString(),
             `# H1
 
           paragraph
